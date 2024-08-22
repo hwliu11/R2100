@@ -1,12 +1,12 @@
 #!/bin/bash
 
-target=R2100
+target=x64
 is_debug=0
 if [ $# -gt 0 ]; then
-	if [ "$1"="R2100" -o "$1"="RM2100" ]; then
+	if [ "$1"="x64" -o "$1"="x86" ]; then
 		target=$1
 	else
-		target=R2100
+		target=x64
 	fi
 fi
 top_dir=$PWD
@@ -49,7 +49,6 @@ else
 	git pull
 	cd $top_dir
 fi
-
 if [ ! -e $wk_dir ]; then
 	echo get openwrt source failed
 	exit
@@ -62,12 +61,12 @@ cd $wk_dir
 echo execute diy script $top_dir/$diy_p1_sh
 . $top_dir/$diy_p1_sh
 ./scripts/feeds update -a
-./scripts/feeds install -a
+
 [ -e $top_dir/files ] && mv $top_dir/files ./files
-[ -e $top_dir/configs/$target.config ] && cp -f $top_dir/configs/$target.config ./.config
+[ -e $top_dir/configs/$target.config ] && cp $top_dir/configs/$target.config ./.config
 echo execute diy script $top_dir/$diy_p2_sh
 . $top_dir/$diy_p2_sh
-		
+./scripts/feeds install -a		
 
 make defconfig
 
