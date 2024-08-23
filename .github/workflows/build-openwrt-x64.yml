@@ -73,19 +73,18 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
-    - name: Combine Disks
-      uses: easimon/maximize-build-space@master
-      with:
-        swap-size-mb: 1024
-        temp-reserve-mb: 100
-        root-reserve-mb: 1024
-        
     - name: Clone source code
       working-directory: /workdir
       run: |
-        df -hT $PWD
+        df -h
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        # 利用挂载在 /mnt/ 的 14G 额外空间:
+        sudo mkdir -p -m 777 /mnt/openwrt/dl /mnt/openwrt/feeds 
+        ln -s /mnt/openwrt/dl /workdir/openwrt/dl
+        ln -s /mnt/openwrt/feeds /workdir/openwrt/feeds
+        # ln -s /mnt/openwrt/staging_dir ./staging_dir
+        df -h
 
     - name: Load custom feeds
       run: |
