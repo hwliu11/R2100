@@ -55,7 +55,7 @@ jobs:
         echo -e "$(sudo lshw -short -C memory | grep GiB)\n"
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量: $(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT
-	
+        
     - name: Checkout
       uses: actions/checkout@main
 
@@ -80,7 +80,7 @@ jobs:
         swap-size-mb: 1024
         temp-reserve-mb: 100
         root-reserve-mb: 1024
-	
+        
     - name: Clone source code
       working-directory: /workdir
       run: |
@@ -103,7 +103,7 @@ jobs:
         cd openwrt && ./scripts/feeds install -a
         rm -rf feeds/packages/lang/golang
         git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
-	
+        
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
