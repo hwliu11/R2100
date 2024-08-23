@@ -86,7 +86,7 @@ jobs:
         ln -s /mnt/openwrt/feeds /workdir/openwrt/feeds
         # ln -s /mnt/openwrt/staging_dir ./staging_dir
         df -h
-	
+        
     - name: Load custom feeds
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
