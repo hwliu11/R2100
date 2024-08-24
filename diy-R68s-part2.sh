@@ -129,7 +129,8 @@ sed -i 's/services/vpn/g' package/luci-app-v2ray-server/luasrc/view/v2ray_server
 # 调整 CONTROL 到 服务 菜单
 sed -i 's/control/services/g' package/luci-app-cpulimit/luasrc/controller/*.lua
 sed -i 's/control/services/g' package/luci-app-cpulimit/luasrc/model/cbi/*.lua
-
+# 修改编译错误
+sed -i '/^UBOOT_TARGETS := rk3528-evb rk3588-evb/s/^/#/' package/boot/uboot-rk35xx/Makefile
 
 ./scripts/feeds update -a
 
