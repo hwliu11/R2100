@@ -66,7 +66,7 @@ function git_clone_path() {
 # 添加额外软件包
 git_clone_path master https://github.com/kiddin9/openwrt-packages luci-app-adguardhome luci-app-netdata luci-app-filebrowser luci-app-dockerman luci-app-docker brook v2ray-geodata chinadns-ng dns2socks dns2tcp hysteria ipt2socks microsocks naiveproxy pdnsd-alt ssocks tcping trojan-go trojan-plus simple-obfs v2ray-core v2ray-plugin shadowsocks-rust shadowsocksr-libev xray-core lua-neturl trojan redsocks2 v2ray-plugin luci-theme-edge luci-theme-argon luci-app-argon-config luci-app-mosdns mosdns luci-app-wrtbwmon wrtbwmon luci-app-alist alist luci-app-wizard luci-app-onliner luci-app-netspeedtest speedtest-web homebox cpulimit luci-app-cpulimit luci-app-v2ray-server xray-plugin luci-app-store ffmpeg-remux luci-lib-taskd luci-lib-xterm taskd lua-neturl simple-obfs naiveproxy hysteria redsocks2 microsocks luci-app-bypass luci-app-openclash luci-app-passwall luci-app-passwall2 luci-app-ssr-plus tuic-client shadowsocks-rust shadow-tls gn
 pull_from_github destan19 OpenAppFilter
-pull_from_github tty228 luci-app-serverchan
+pull_from_github tty228 luci-app-wechatpush
 pull_from_github pymumu luci-app-smartdns
 
 pull_from_github esirplayground luci-app-poweroff
