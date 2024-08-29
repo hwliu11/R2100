@@ -131,6 +131,18 @@ sed -i '159i+		rt_memc_w32(pll,MEMC_REG_CPU_PLL);' ./target/linux/ramips/patches
 sed -i '160i+		for(i=0;i<1024;i++);' ./target/linux/ramips/patches-5.4/102-mt7621-fix-cpu-clk-add-clkdev.patch
 fi
 
+#5.10
+grep "rt_memc_w32(pll,MEMC_REG_CPU_PLL);" ./target/linux/ramips/patches-5.10/322-mt7621-fix-cpu-clk-add-clkdev.patch
+if [ $? -ne 0 ]; then
+echo fix over clock
+sed -i 's/-105,11 +110,89/-111,49 +110,93/' ./target/linux/ramips/patches-5.10/322-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i 's/u32 xtal_clk, cpu_clk, bus_clk;/u32 xtal_clk, cpu_clk, bus_clk,i;/' ./target/linux/ramips/patches-5.10/322-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '119i+		pll &= ~(0x7ff);' ./target/linux/ramips/patches-5.10/322-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '120i+		pll |=  (0x362);' ./target/linux/ramips/patches-5.10/322-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '121i+		rt_memc_w32(pll,MEMC_REG_CPU_PLL);' ./target/linux/ramips/patches-5.10/322-mt7621-fix-cpu-clk-add-clkdev.patch
+sed -i '122i+		for(i=0;i<1024;i++);' ./target/linux/ramips/patches-5.10/322-mt7621-fix-cpu-clk-add-clkdev.patch
+fi
+
 grep "sleep 2s" ./package/base-files/files/etc/rc.local
 if [ $? -ne 0 ]; then
 sed -i '3i\
