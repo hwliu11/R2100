@@ -70,10 +70,12 @@ pull_from_github tty228 luci-app-wechatpush
 pull_from_github esirplayground luci-app-poweroff
 pull_from_github pymumu luci-app-smartdns
 pull_from_github sirpdboy luci-theme-opentopd
-pull_from_github sirpdboy luci-theme-kucat main
+pull_from_github sirpdboy luci-theme-kucat 18.06
 # 在线用户
-git_clone_path master https://github.com/kiddin9/openwrt-packages luci-app-wrtbwmon wrtbwmon luci-app-onliner luci-theme-argon luci-app-argon-config
-
+git_clone_path main https://github.com/haiibo/packages luci-app-wrtbwmon wrtbwmon luci-app-onliner 
+pull_from_github rufengsuixing luci-app-onliner
+pull_from_github jerrykuku luci-theme-argon 18.06
+pull_from_github jerrykuku luci-app-argon-config 18.06
 grep -n "refresh_interval=2s" package/lean/default-settings/files/zzz-default-settings
 if [ $? -ne 0 ]; then
 	sed -i '/bin\/sh/a\uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
@@ -116,6 +118,14 @@ rm -rf feeds/luci/applications/luci-app-dockerman
 #rm -rf feeds/luci/applications/luci-app-mosdns
 rm -rf feeds/luci/applications/luci-app-serverchan
 rm -rf feeds/luci/applications/luci-app-smartdns
+
+#5.4内核
+grep "KERNEL_PATCHVER:=5.4" ./target/linux/ramips/Makefile
+if [ $? -ne 0 ]; then
+echo compile kernel 5.4
+sed -i 's/^KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=5.4/' ./target/linux/ramips/Makefile
+fi
+
 #超频 
 #0x362=1100MHz
 #0x312=1000MHz
