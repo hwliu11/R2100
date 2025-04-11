@@ -69,13 +69,15 @@ function git_clone_path() {
 pull_from_github tty228 luci-app-wechatpush
 pull_from_github esirplayground luci-app-poweroff
 pull_from_github pymumu luci-app-smartdns
-pull_from_github sirpdboy luci-theme-opentopd
-pull_from_github sirpdboy luci-theme-kucat 18.06
+#新版luci不支持
+#pull_from_github sirpdboy luci-theme-opentopd
+#新版luci已经更新
+pull_from_github sirpdboy luci-theme-kucat
 # 在线用户
 git_clone_path main https://github.com/haiibo/packages luci-app-wrtbwmon wrtbwmon luci-app-onliner 
 pull_from_github rufengsuixing luci-app-onliner
-pull_from_github jerrykuku luci-theme-argon 18.06
-pull_from_github jerrykuku luci-app-argon-config 18.06
+pull_from_github jerrykuku luci-theme-argon
+pull_from_github jerrykuku luci-app-argon-config
 grep -n "refresh_interval=2s" package/lean/default-settings/files/zzz-default-settings
 if [ $? -ne 0 ]; then
 	sed -i '/bin\/sh/a\uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
